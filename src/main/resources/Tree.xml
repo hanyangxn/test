@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<config>
+    <!--
+    id:与对应类中的静态成员变量taskId一致
+    enable:标识本节点是否执行，若本节点不执行，则直接进入其子节点
+    -->
+    <task id="TkQuery" name="验证数据" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkQuery" >
+        <task id="TkSyncKnowledge" name="同步知识库" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncKnowledge" >
+        </task>
+        <task id="TkSyncQuestionAnswer" name="同步问答对" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncQuestionAnswer"></task>
+        <task id="TkSyncSlot" name="同步词槽" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncSlot"></task>
+        <task id="TkSyncIntents" name="同步意图库" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncIntents"></task>
+        <task id="TkSyncIntent" name="同步意图" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncIntent"></task>
+        <task id="TkSynckeyWord" name="同步特征词" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSynckeyWord"></task>
+        <task id="TkSyncPattern" name="同步模板" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncPattern"></task>
+        <task id="TkSyncSamples" name="同步样本集" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncSamples"></task>
+        <task id="TkSyncSample" name="同步样本" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncSample"></task>
+        <task id="TkSyncRobotSet" name="同步异常识别" enable="true" class="com.xiaoneng.ai.serviceImpl.sync.TkSyncRobotSet"></task>
+    </task>
+</config>

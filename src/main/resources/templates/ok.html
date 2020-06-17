@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        function downloadQAList() {
+
+//            var id = $(".middleNavTab.select").find("input[name='kbId']").val();
+//            var secretStr = $("#secretStr").val();
+            cancelBubble();
+            var url = getRootPath() + "/downloadKB";
+            alert("sdfd")
+            parent.window.saveFile(url);
+        }
+//        $("#addQA").on("click",function () {
+//            var ue = UE.getEditor('container');
+//            $("input[name='answer']").val(ue.getContent());
+//        })
+
+        function add() {
+            var ue = UE.getEditor('container');
+            $("input[name='answer']").val(ue.getContent());
+        }
+        function cancelBubble() {
+//            alert("1234")
+            var e = getEvent();
+            if (window.event) {
+                e.cancelBubble = true;//阻止冒泡
+            } else if (e.preventDefault) {
+                e.stopPropagation();//阻止冒泡
+            }
+        }
+        function getEvent() {
+//            alert("???????????")
+            if (window.event) {
+                return window.event;
+            }
+            func = getEvent.caller;
+            while (func != null) {
+                var arg0 = func.arguments[0];
+                if (arg0) {
+                    if ((arg0.constructor == Event || arg0.constructor == MouseEvent
+                        || arg0.constructor == KeyboardEvent)
+                        || (typeof (arg0) == "object" && arg0.preventDefault
+                        && arg0.stopPropagation)) {
+                        return arg0;
+                    }
+                }
+                func = func.caller;
+            }
+            return null;
+        }
+        function getRootPath() {
+            //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+            var curWwwPath = window.document.location.href;
+//            alert("0000")
+            //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+            var pathName = window.document.location.pathname;
+            var pos = curWwwPath.indexOf(pathName);
+            //获取主机地址，如： http://localhost:8083
+            var localhostPaht = curWwwPath.substring(0, pos);
+            //获取带"/"的项目名，如：/uimcardprj
+            var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+            return (localhostPaht + projectName);
+        }
+        function saveFile(fileurl) {
+            if (typeof (openURLToBrowser) != "undefined") {
+                openURLToBrowser(fileurl);
+            } else
+                window.open(fileurl);
+        }
+    </script>
+</head>
+<body>
+<table>
+    <tr><td>id</td>
+        <td>姓名</td>
+        <td>密码</td></tr>
+    <#list list as l>
+        <tr>
+            <td>${l.id}</td>
+            <td>${l.name}</td>
+            <td>${l.pass}</td>
+        </tr>
+    </#list>
+    <select id="sss" name="addr">
+        <option value="0">全部</option>
+        <option value="1">北京</option>
+        <option value="2">上海</option>
+        <option value="3">深圳</option>
+        <option value="4">武汉</option>
+    </select>
+    <!--<form enctype="multipart/form-data" method="post" action="testuploadimg">-->
+        <!--图片<input type="file" name="file"/>-->
+        <!--<input type="submit" value="上传"/>-->
+    <!--</form>-->
+    <form enctype="multipart/form-data" method="post" action="batchImport">
+    excel<input type="file" name="file"/>
+    <input type="submit" value="导入"/>
+</form>
+    <button class="btn bootstrapBtnBgBlue" onclick="downloadQAList()">导出</button>
+</table>
+<form action="user/queryOne.do">
+    <input type="submit" value="查询">一个
+</form>
+<p id="p1">这是一个段落。</p>
+<button id="ll">按我</button>
+<button id="addQA" name="answer" onclick="add()">富文本</button>
+<script src="static/jquery-3.2.1.min.js"></script>
+<script src="qq.js"></script>
+</body>
+</html>
